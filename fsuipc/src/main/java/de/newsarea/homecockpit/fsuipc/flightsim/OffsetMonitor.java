@@ -1,5 +1,6 @@
 package de.newsarea.homecockpit.fsuipc.flightsim;
 
+import de.newsarea.homecockpit.fsuipc.FSUIPCInterface;
 import de.newsarea.homecockpit.fsuipc.domain.ByteArray;
 import de.newsarea.homecockpit.fsuipc.domain.OffsetIdent;
 import de.newsarea.homecockpit.fsuipc.domain.OffsetItem;
@@ -21,7 +22,7 @@ public class OffsetMonitor {
 
     private static final Logger log = LoggerFactory.getLogger(OffsetMonitor.class);
 
-    private final FSUIPCFlightSimInterface fsuipcFlightSimInterface;
+    private final FSUIPCInterface fsuipcFlightSimInterface;
     private final Map<String, OffsetIdent> monitorOffsetList;
     private final EventListenerSupport<OffsetEventListener> offsetEventListeners;
     private final EventListenerSupport<OffsetCollectionEventListener> offsetCollectionEventListeners;
@@ -29,7 +30,7 @@ public class OffsetMonitor {
     private ByteArray[] offsetValues;
     private ScheduledExecutorService scheduledExecutorService;
 
-    public OffsetMonitor(FSUIPCFlightSimInterface fsuipcFlightSimInterface) {
+    public OffsetMonitor(FSUIPCInterface fsuipcFlightSimInterface) {
         this.fsuipcFlightSimInterface = fsuipcFlightSimInterface;
         this.monitorOffsetList = new ConcurrentHashMap<>();
         this.offsetEventListeners = EventListenerSupport.create(OffsetEventListener.class);
