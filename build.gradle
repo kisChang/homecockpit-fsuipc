@@ -11,7 +11,7 @@ subprojects {
     apply plugin: 'signing'
 
     group = 'de.newsarea.homecockpit'
-    version = '0.9.3'
+    version = '0.9.4-dev'
 
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
@@ -35,7 +35,7 @@ subprojects {
 
     artifacts {
         archives jar
-        archives javadocJar
+//        archives javadocJar
         archives sourcesJar
     }
 

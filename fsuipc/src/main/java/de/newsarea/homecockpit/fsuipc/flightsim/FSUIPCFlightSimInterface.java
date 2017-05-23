@@ -53,8 +53,14 @@ public class FSUIPCFlightSimInterface implements FSUIPCInterface {
 	}
 
     public boolean isConnectionEstablished() {
-        if(!isOpenConnection) { return false; }
-        isOpenConnection = fsuipcFlightSimWrapper.isConnectionEstablished();
+        if (fsuipcFlightSimWrapper == null){
+            return false;
+        }
+        try {
+            isOpenConnection = fsuipcFlightSimWrapper.isConnectionEstablished();
+        }catch (Exception e){
+            isOpenConnection = false;
+        }
         return isOpenConnection;
     }
 
@@ -84,9 +90,9 @@ public class FSUIPCFlightSimInterface implements FSUIPCInterface {
     }
 
 	public void close() {
-        isOpenConnection = false;
 		offsetMonitor.close();
 		fsuipcFlightSimWrapper.close();
+        isOpenConnection = false;
 	}
 
 	public void addEventListener(OffsetEventListener offsetEventListener) {
